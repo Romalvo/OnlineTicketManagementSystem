@@ -2,26 +2,40 @@ package sda.spring.onlineticketmanagementsystem.entity;
 
 
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.annotation.Priority;
+import jakarta.persistence.*;
+import jakarta.transaction.Status;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
+@Getter
+@Setter
 public class Ticket {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-
     private Long id;
 
+    @ManyToOne
+    private Customer customer;
+
+    @ManyToOne
+    private Department department;
+
+    @ManyToOne
+    private SupportPersonnel supportPersonnel;
+
     private String subject;
-    private Long departmentId;
-    private String status;
-    private String priority;
-    private Long customerUserId;
-    private Long supportUserId;
+    private String description;
+    private Priority priority;
+    private Status status;
+
+    @OneToMany(mappedBy = "ticket", cascade = CascadeType.ALL)
+    private List<Message> messages = new ArrayList<>();
     private LocalDateTime createdAt;
 }
