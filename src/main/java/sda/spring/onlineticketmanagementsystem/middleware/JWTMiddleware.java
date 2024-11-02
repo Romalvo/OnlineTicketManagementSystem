@@ -55,7 +55,7 @@ public class JWTMiddleware extends OncePerRequestFilter {
         if(username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
             UserDetails userDetails = this.authService.loadUserByUsername(username);
 
-            if (jwtUtil.validateToken(jwt, UserDetails.getUsername())) {
+            if (jwtUtil.validateToken(jwt, userDetails.getUsername())) {
                 UsernamePasswordAuthenticationToken usernamePasswordAuthToken = new UsernamePasswordAuthenticationToken(
                         userDetails, null, userDetails.getAuthorities());
                 usernamePasswordAuthToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));

@@ -50,7 +50,7 @@ public class AuthController {
     // Get user profile (secured endpoint)
     @GetMapping("/profile")
     public ResponseEntity<UserProfileDto> getProfile() {
-        return ResponseEntity.ok(UserService.getLoggedInUserProfile());
+        return ResponseEntity.ok(userService.getLoggedInUserProfile());
     }
 
     // Logout is handled client-side; you can invalidate the token if needed

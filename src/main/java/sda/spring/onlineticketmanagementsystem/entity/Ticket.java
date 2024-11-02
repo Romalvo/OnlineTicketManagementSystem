@@ -38,4 +38,16 @@ public class Ticket {
     @OneToMany(mappedBy = "ticket", cascade = CascadeType.ALL)
     private List<Message> messages = new ArrayList<>();
     private LocalDateTime createdAt;
+
+    enum Status {
+        OPEN,
+        CLOSED,
+    }
+    enum Priority {
+        HIGH,
+        MEDIUM,
+        LOW,
+    }
 }
+
+
