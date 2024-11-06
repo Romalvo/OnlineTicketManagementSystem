@@ -1,10 +1,7 @@
 package sda.spring.onlineticketmanagementsystem.entity;
 
 
-
-import jakarta.annotation.Priority;
 import jakarta.persistence.*;
-import jakarta.transaction.Status;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -31,7 +28,6 @@ public class Ticket {
     private SupportPersonnel supportPersonnel;
 
     private String subject;
-    private String description;
     private Priority priority;
     private Status status;
 
