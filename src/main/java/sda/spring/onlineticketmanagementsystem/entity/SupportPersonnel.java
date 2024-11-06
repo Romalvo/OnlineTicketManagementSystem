@@ -21,5 +21,5 @@ public class SupportPersonnel extends User {
             inverseJoinColumns = @JoinColumn(name = "department_id")
     )
 
-    private Set<SupportPersonnel> departments;
+    private Set<Department> departments;
 }
