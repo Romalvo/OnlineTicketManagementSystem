@@ -20,6 +20,6 @@ public class Department {
 
     private LocalDateTime createdAt;
 
-//    @ManyToMany(mappedBy = "departments")
-//    private Set<SupportPersonnel> supportPersonnels;
+    @ManyToMany(mappedBy = "departments")
+    private Set<SupportPersonnel> supportPersonnels;
 }
