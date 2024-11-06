@@ -7,7 +7,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.web.bind.annotation.*;
 import sda.spring.onlineticketmanagementsystem.dto.common.UserProfileDto;
 import sda.spring.onlineticketmanagementsystem.dto.request.LoginRequestDto;
-import sda.spring.onlineticketmanagementsystem.dto.request.RegisterRequestDto;
+import sda.spring.onlineticketmanagementsystem.dto.request.RegisterCustomerRequestDto;
 import sda.spring.onlineticketmanagementsystem.dto.response.TokenResponseDto;
 import sda.spring.onlineticketmanagementsystem.service.UserService;
 import sda.spring.onlineticketmanagementsystem.util.JwtUtil;
@@ -29,13 +29,20 @@ public class AuthController {
         this.jwtUtil = jwtUtil;
     }
 
-    //Register new user
+    // Register new user
     // todo:separate endpoints for customer and support personnel registration
-    @PostMapping("/register")
-    public ResponseEntity<UserProfileDto> register(@RequestBody RegisterRequestDto registerUserRequestDto) {
-        UserProfileDto response = userService.registerUser(registerUserRequestDto);
+    @PostMapping("/register-support-personnel")
+    public ResponseEntity<UserProfileDto> registerSupportPersonnel(@RequestBody RegisterCustomerRequestDto registerUserRequestDto) {
+        UserProfileDto response = userService.registerCustomer(registerUserRequestDto);
         return ResponseEntity.ok(response);
     }
+
+    @PostMapping("/register-customer")
+    public ResponseEntity<UserProfileDto> registerCustomer(@RequestBody RegisterCustomerRequestDto registerUserRequestDto) {
+        UserProfileDto response = userService.registerCustomer(registerUserRequestDto);
+        return ResponseEntity.ok(response);
+    }
+
 
     // Login and return JWT token
     @PostMapping("/login")
